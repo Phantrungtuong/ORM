@@ -28,3 +28,11 @@ Route::get('many-many', 'Relationship@many_many');
 
 Route::get('trinity', 'Relationship@trinity');
 Route::get('trinity_backwards', 'Relationship@trinity_backwards');
+
+Route::get('comment-post', 'Relationship@cmtpost');
+Route::get('comment-product', 'Relationship@cmtproduct');
+Route::get('object-comment', 'Relationship@objectcmt');
+
+Route::get('admin-role', 'Relationship@admin_roles');
+
+Route::get('admin-rp', 'Relationship@admin_role_per');

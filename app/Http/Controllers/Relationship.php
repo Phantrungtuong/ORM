@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\City;
+use App\Comment;
 use App\Country;
 use App\Key;
 use App\Lock;
 use App\Post;
+use App\Product;
+use App\Role;
 use App\Tag;
 use App\TypePost;
 use Illuminate\Http\Request;
@@ -98,4 +102,66 @@ class Relationship extends Controller
         print_r($data);
         echo "</pre";
     }
+
+
+//Polymorphic Relations
+
+
+    //One-To-Many
+    public function cmtpost(){
+        $data = Post::find(1)->comments()->get()->toArray();
+        $eager = Post::with('comments')->where('id', 1)->get()->toArray();
+
+        echo "<pre>";
+        print_r($data);
+        echo "<br>";
+        print_r($eager);
+        echo "</pre";
+    }
+
+    public function cmtproduct(){
+        $data = Product::find(1)->comments()->get()->toArray();
+        $eager= Product::with('comments')->where('id', '1')->get()->toArray();
+
+        echo "<pre>";
+        print_r($data);
+        echo "<br>";
+        print_r($eager);
+        echo "</pre";
+    }
+     //backwards
+
+    public function objectcmt(){
+        $data = Comment::find(2)->object()->get()->toArray();
+        $eager = Comment::with('object')->where('id', 2)->get()->toArray();
+
+        echo "<pre>";
+        print_r($data);
+        echo "<br>";
+        print_r($eager);
+        echo "</pre";
+    }
+
+
+    //Many-To-Many
+    public function admin_roles(){
+        $data = Admin::find(1)->rolespolimophic()->get()->toArray();
+        $eager = Admin::with('rolespolimophic')->where('id', 1)->get()->toArray();
+
+        echo "<pre>";
+        print_r($data);
+        echo "<br>";
+        print_r($eager);
+        echo "</pre";
+    }
+
+
+    public function admin_role_per(){
+        $eager = Admin::with('roles.permissons')->where('id', 1)->get()->toArray();
+
+        echo "<pre>";
+        print_r($eager);
+        echo "</pre";
+    }
+
 }

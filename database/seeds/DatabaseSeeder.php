@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call('city');
+         $this->call('roleable');
     }
 }
 
@@ -165,6 +165,102 @@ class city extends Seeder
             array('member_id'=>5,'city'=>'City 5'),
             array('member_id'=>6,'city'=>'City 6'),
             array('member_id'=>7,'city'=>'City 7'),
+
+        ]);
+    }
+}
+
+class product extends Seeder
+{
+    public function run()
+    {
+        DB::table('products')->insert([
+            array('name'=>'Product 1','price'=>1),
+            array('name'=>'Product 2','price'=>2),
+            array('name'=>'Product 3','price'=>3),
+            array('name'=>'Product 4','price'=>4),
+            array('name'=>'Product 5','price'=>5),
+            array('name'=>'Product 6','price'=>6),
+            array('name'=>'Product 7','price'=>7),
+
+        ]);
+    }
+}
+
+class comment extends Seeder
+{
+    public function run()
+    {
+        DB::table('comments')->insert([
+            array('content'=>'comment posts 1','object_id'=>1, 'object_type'=>'App\Post'),
+            array('content'=>'comment posts 2','object_id'=>2, 'object_type'=>'App\Post'),
+            array('content'=>'comment posts 3','object_id'=>3, 'object_type'=>'App\Post'),
+            array('content'=>'comment product 1','object_id'=>1, 'object_type'=>'App\Product'),
+            array('content'=>'comment product 2','object_id'=>2, 'object_type'=>'App\Product'),
+            array('content'=>'comment product 3','object_id'=>3, 'object_type'=>'App\Product'),
+
+        ]);
+    }
+}
+
+class role extends Seeder
+{
+    public function run()
+    {
+        DB::table('roles')->insert([
+            array('role'=>'admin','display_role'=>'Admin'),
+            array('role'=>'seo','display_role'=>'SEO'),
+            array('role'=>'content','display_role'=>'Content'),
+
+        ]);
+    }
+}
+
+class permission extends Seeder
+{
+    public function run()
+    {
+        DB::table('permissions')->insert([
+            array('permission'=>'view','display_permission'=>'View'),
+            array('permission'=>'create','display_permission'=>'Create'),
+            array('permission'=>'update','display_permission'=>'update'),
+            array('permission'=>'delete','display_permission'=>'Delete'),
+
+        ]);
+    }
+}
+
+class admin extends Seeder
+{
+    public function run()
+    {
+        DB::table('admins')->insert([
+            array('name'=>'A','email'=>'a@gmail.com'),
+            array('name'=>'B','email'=>'b@gmail.com'),
+            array('name'=>'C','email'=>'c@gmail.com'),
+            array('name'=>'D','email'=>'d@gmail.com'),
+            array('name'=>'E','email'=>'e@gmail.com'),
+            array('name'=>'F','email'=>'f@gmail.com'),
+            array('name'=>'G','email'=>'g@gmail.com'),
+            array('name'=>'H','email'=>'h@gmail.com'),
+
+        ]);
+    }
+}
+
+class roleable extends Seeder
+{
+    public function run()
+    {
+        DB::table('roleables')->insert([
+            array('role_id'=>1,'object_id'=>1, 'object_type'=>'App\Admin'),
+            array('role_id'=>2,'object_id'=>2, 'object_type'=>'App\Admin'),
+            array('role_id'=>3,'object_id'=>3, 'object_type'=>'App\Admin'),
+            array('role_id'=>1,'object_id'=>1, 'object_type'=>'App\Permission'),
+            array('role_id'=>2,'object_id'=>2, 'object_type'=>'App\Permission'),
+            array('role_id'=>3,'object_id'=>3, 'object_type'=>'App\Permission'),
+            array('role_id'=>1,'object_id'=>4, 'object_type'=>'App\Permission'),
+
 
         ]);
     }
