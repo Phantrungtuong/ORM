@@ -11,10 +11,10 @@ class Permission extends Model
     public $timestamps = true;
 
     public function roles(){
-        return $this->belongsToMany('App\Role', 'roleables', 'object_id', 'role_id');
+        return $this->belongsToMany('App\Role', 'role_permissions', 'permission_id', 'role_id');
     }
 
-    public function rolespolimophic(){
-        return $this->morphToMany('App\Role', 'roleables');
+    public function rolespolimorphic(){
+        return $this->morphToMany('App\Role', 'object', 'roleables');
     }
 }

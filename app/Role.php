@@ -11,18 +11,18 @@ class Role extends Model
     public $timestamps = true;
 
     public function admins(){
-        return $this->belongsToMany('App\Admin', 'roleables', 'role_id', 'object_id');
+        return $this->belongsToMany('App\Admin', 'admin_roles', 'role_id', 'admin_id');
     }
 
     public function permissons(){
-        return $this->belongsToMany('App\Admin', 'roleables', 'role_id', 'object_id');
+        return $this->belongsToMany('App\Permission', 'role_permissions', 'role_id', 'permission_id');
     }
 
     public function adminspolimorphic(){
-        return $this->morphedByMany('App\Admin', 'rd oleables');
+        return $this->morphedByMany('App\Admin', 'object', 'roleables');
     }
 
     public function permissionspolimorphic(){
-        return $this->morphedByMany('App\Permission', 'roleables');
+        return $this->morphedByMany('App\Permission', 'object', 'roleables');
     }
 }

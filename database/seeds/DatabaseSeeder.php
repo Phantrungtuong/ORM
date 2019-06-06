@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call('roleable');
+         $this->call('role_permission');
     }
 }
 
@@ -251,15 +251,52 @@ class admin extends Seeder
 class roleable extends Seeder
 {
     public function run()
+{
+    DB::table('roleables')->insert([
+        array('role_id'=>1,'object_id'=>1, 'object_type'=>'App\Admin'),
+        array('role_id'=>2,'object_id'=>2, 'object_type'=>'App\Admin'),
+        array('role_id'=>3,'object_id'=>3, 'object_type'=>'App\Admin'),
+        array('role_id'=>1,'object_id'=>1, 'object_type'=>'App\Permission'),
+        array('role_id'=>2,'object_id'=>2, 'object_type'=>'App\Permission'),
+        array('role_id'=>3,'object_id'=>3, 'object_type'=>'App\Permission'),
+        array('role_id'=>1,'object_id'=>4, 'object_type'=>'App\Permission'),
+
+
+    ]);
+}
+}
+
+class admin_role extends Seeder
+{
+    public function run()
     {
-        DB::table('roleables')->insert([
-            array('role_id'=>1,'object_id'=>1, 'object_type'=>'App\Admin'),
-            array('role_id'=>2,'object_id'=>2, 'object_type'=>'App\Admin'),
-            array('role_id'=>3,'object_id'=>3, 'object_type'=>'App\Admin'),
-            array('role_id'=>1,'object_id'=>1, 'object_type'=>'App\Permission'),
-            array('role_id'=>2,'object_id'=>2, 'object_type'=>'App\Permission'),
-            array('role_id'=>3,'object_id'=>3, 'object_type'=>'App\Permission'),
-            array('role_id'=>1,'object_id'=>4, 'object_type'=>'App\Permission'),
+        DB::table('admin_roles')->insert([
+            array('admin_id'=>2,'role_id'=>1),
+            array('admin_id'=>3,'role_id'=>2),
+            array('admin_id'=>4,'role_id'=>3),
+            array('admin_id'=>5,'role_id'=>3),
+            array('admin_id'=>1,'role_id'=>1),
+            array('admin_id'=>1,'role_id'=>2),
+            array('admin_id'=>1,'role_id'=>3),
+
+
+        ]);
+    }
+}
+
+class role_permission extends Seeder
+{
+    public function run()
+    {
+        DB::table('role_permissions')->insert([
+            array('role_id'=>1, 'permission_id'=>1),
+            array('role_id'=>1, 'permission_id'=>2),
+            array('role_id'=>1, 'permission_id'=>3),
+            array('role_id'=>1, 'permission_id'=>4),
+            array('role_id'=>2, 'permission_id'=>2),
+            array('role_id'=>3, 'permission_id'=>2),
+            array('role_id'=>3, 'permission_id'=>1),
+            array('role_id'=>2, 'permission_id'=>1),
 
 
         ]);

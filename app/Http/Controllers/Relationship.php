@@ -104,10 +104,10 @@ class Relationship extends Controller
     }
 
 
-//Polymorphic Relations
 
 
-    //One-To-Many
+
+//One-To-Many Polymorphic Relations
     public function cmtpost(){
         $data = Post::find(1)->comments()->get()->toArray();
         $eager = Post::with('comments')->where('id', 1)->get()->toArray();
@@ -129,8 +129,9 @@ class Relationship extends Controller
         print_r($eager);
         echo "</pre";
     }
-     //backwards
 
+
+ //backwards Polymorphic Relations one-many
     public function objectcmt(){
         $data = Comment::find(2)->object()->get()->toArray();
         $eager = Comment::with('object')->where('id', 2)->get()->toArray();
@@ -143,10 +144,10 @@ class Relationship extends Controller
     }
 
 
-    //Many-To-Many
+//Many-To-Many Polymorphic Relations
     public function admin_roles(){
-        $data = Admin::find(1)->rolespolimophic()->get()->toArray();
-        $eager = Admin::with('rolespolimophic')->where('id', 1)->get()->toArray();
+        $data = Admin::find(1)->rolespolimorphic()->get()->toArray();
+        $eager = Admin::with('rolespolimorphic')->where('id', 1)->get()->toArray();
 
         echo "<pre>";
         print_r($data);
@@ -155,7 +156,15 @@ class Relationship extends Controller
         echo "</pre";
     }
 
+    public function admin_roles_permissions(){
+        $eager = Admin::with('rolespolimorphic.permissionspolimorphic')->where('id', 1)->get()->toArray();
 
+        echo "<pre>";
+        print_r($eager);
+        echo "</pre";
+    }
+
+//many-many relationship
     public function admin_role_per(){
         $eager = Admin::with('roles.permissons')->where('id', 1)->get()->toArray();
 

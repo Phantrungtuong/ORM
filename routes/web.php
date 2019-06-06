@@ -34,5 +34,6 @@ Route::get('comment-product', 'Relationship@cmtproduct');
 Route::get('object-comment', 'Relationship@objectcmt');
 
 Route::get('admin-role', 'Relationship@admin_roles');
+Route::get('admin-role-per', 'Relationship@admin_roles_permissions');
 
 Route::get('admin-rp', 'Relationship@admin_role_per');
